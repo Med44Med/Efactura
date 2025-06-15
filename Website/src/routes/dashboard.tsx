@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '../components/dashboard/header';
 
 const Dashboard = () => {
   return (
-    <div  className='text-black'>Dashboard</div>
+    <>
+      <Header />
+    </>
   )
 }
 

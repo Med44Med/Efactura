@@ -1,3 +1,6 @@
 import { createContext } from 'react';
 
- export const HomeContext = createContext();
+export const DashboardContext = createContext();
+
+export const HomeContext = createContext();
+
