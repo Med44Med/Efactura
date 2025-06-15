@@ -1,9 +1,24 @@
-import React from 'react'
+import React from "react";
+import { NavLink } from 'react-router';
 
 const Header = () => {
   return (
-    <div className='w-full h-36 bg-gray-300'>Header</div>
-  )
-}
+    <div className="w-full h-36 bg-white shadow flex justify-start items-start rounded-xl p-3 m-3">
+      <div className="h-full flex-1  flex justify-center items-start gap-1 flex-col pl-36">
+        <h1 className='text-3xl text-black font-bold '>Hello,</h1>
+        <h1 className='text-base text-black font-medium '>
+          <NavLink className=' text-blue-400 font-bold hover:text-blue-500  '>Sign in </NavLink>
+          or
+          <NavLink className='text-base text-blue-400 font-bold hover:text-blue-500  '> Sign up </NavLink>
+        </h1>
+      </div>
+      <div className="h-full flex-1  flex justify-end items-end gap-1 ">
+        <NavLink className='bg-blue-400 p-2 rounded text-white font-bold hover:bg-blue-500'>New Invoice</NavLink>
+        <NavLink className='bg-blue-400 p-2 rounded text-white font-bold hover:bg-blue-500'>New Estimate</NavLink>
+        <NavLink className='bg-blue-400 p-2 rounded text-white font-bold hover:bg-blue-500'>New Client</NavLink>
+      </div>
+    </div>
+  );
+};
 
-export default Header
+export default Header;

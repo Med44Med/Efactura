@@ -14,7 +14,7 @@ const Layout = () => {
       <div
         className={`${
           !hideMenu && "ml-72"
-        } p-3 flex-1 flex flex-col justify-start items-center`}
+        } p-3 flex-1 flex flex-col justify-start items-center gap-5`}
       >
         <Outlet />
       </div>
