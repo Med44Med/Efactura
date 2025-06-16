@@ -7,6 +7,9 @@ import { FaRegMessage } from "react-icons/fa6";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useState } from 'react';
+import Invoiced from './overviewCards/invoiced';
+import Estimates from './overviewCards/estimates';
+import Messages from './overviewCards/messages';
 
 const Overview = () => {
 
@@ -33,62 +36,9 @@ const Overview = () => {
         </div>
       </div>
       <div className="w-full  flex-1 grid grid-cols-1 gap-5 md:grid-cols-3 ">
-        <div className="h-56 bg-white shadow rounded p-3 flex flex-col gap-5">
-          <div className="w-full">
-            <h1 className="text-xl font-semibold">Invoiced</h1>
-          </div>
-          <div className="w-full flex justify-around items-center">
-            <div className="flex flex-col justify-center items-center gap-3">
-              <FaRegFileAlt className="text-4xl" />
-              <h1 className="text-base font-semibold ">0 Invoices</h1>
-            </div>
-            <div className="flex flex-col justify-center items-center gap-3">
-              <FaEuroSign className="text-4xl" />
-              <h1 className="text-base font-semibold ">0,00 D.A</h1>
-            </div>
-          </div>
-          <div className="mt-auto w-full flex justify-end">
-            <NavLink className="bg-blue-400 p-2 rounded  hover:bg-blue-500">
-              <h1 className="text-white font-bold">View All</h1>
-            </NavLink>
-          </div>
-        </div>
-        <div className="h-56 bg-white shadow rounded p-3 flex flex-col gap-5">
-          <div className="w-full">
-            <h1 className="text-xl font-semibold">Estimates</h1>
-          </div>
-          <div className="w-full flex justify-around items-center">
-            <div className="flex flex-col justify-center items-center gap-3">
-              <FaRegFileAlt className="text-4xl" />
-              <h1 className="text-base font-semibold ">0 Requested</h1>
-            </div>
-            <div className="flex flex-col justify-center items-center gap-3">
-              <FaRegFileAlt className="text-4xl" />
-              <h1 className="text-base font-semibold ">0 Answerd</h1>
-            </div>
-          </div>
-          <div className="mt-auto w-full flex justify-end">
-            <NavLink className="bg-blue-400 p-2 rounded  hover:bg-blue-500">
-              <h1 className="text-white font-bold">View All</h1>
-            </NavLink>
-          </div>
-        </div>
-        <div className="h-56 bg-white shadow rounded p-3 flex flex-col gap-5">
-          <div className="w-full">
-            <h1 className="text-xl font-semibold">Messages</h1>
-          </div>
-          <div className="w-full flex justify-around items-center">
-            <div className="flex flex-col justify-center items-center gap-3">
-              <FaRegMessage className="text-4xl" />
-              <h1 className="text-base font-semibold ">you have 0 messages</h1>
-            </div>
-          </div>
-          <div className="mt-auto w-full flex justify-end">
-            <NavLink className="bg-blue-400 p-2 rounded  hover:bg-blue-500">
-              <h1 className="text-white font-bold">View All</h1>
-            </NavLink>
-          </div>
-        </div>
+        <Invoiced />
+        <Estimates />
+        <Messages />
       </div>
     </div>
   );

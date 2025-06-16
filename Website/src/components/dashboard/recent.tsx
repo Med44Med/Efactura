@@ -1,4 +1,6 @@
 import React from "react";
+import RecentInvoices from './recent/recentInvoices';
+import RecentEstimates from './recent/recentEstimates';
 
 const Recent = () => {
   return (
@@ -6,8 +8,9 @@ const Recent = () => {
       <div className="w-full flex justify-start items-center gap-10 ">
         <h1 className="text-3xl text-black font-bold ">Recent activity</h1>
       </div>
-      <div>
-        
+      <div className='w-full flex flex-col gap-5 justify-center items-start xl:flex-row'>
+        <RecentInvoices />
+        <RecentEstimates />
       </div>
     </div>
   );
