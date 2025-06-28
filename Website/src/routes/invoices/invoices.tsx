@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Invoice = () => {
+const Invoices = () => {
   return (
     <div className='text-black'>Invoice</div>
   )
 }
 
-export default Invoice
+export default Invoices
