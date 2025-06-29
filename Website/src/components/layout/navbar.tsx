@@ -11,6 +11,7 @@ import InvoiceLink from "./groupedLink/invoiceLink";
 import EstimateLink from "./groupedLink/estimateLink";
 import ItemsList from "./groupedLink/itemsList";
 import ClientsList from './groupedLink/clientList';
+import logo from "../../assets/logo.svg";
 
 const buttonStyle ="group w-full flex justify-start items-center gap-5 p-3 px-5 cursor-pointer text-text hover:bg-blue-50";
 const buttonIconStyle = "text-xl font-bold group-hover:text-primary";
@@ -94,8 +95,9 @@ const Navbar = () => {
 
   return (
     <nav className="w-full flex flex-col justify-start items-center border-t-2 border-blue-100 py-3">
-      <NavLink to="/" className="text-4xl text-primary font-bold p-5">
-        Efacture
+      <NavLink to="/" className="w-full flex justify-start items-center gap-3 p-5">
+        <img src={logo} alt="logo" className='h-8 w-8'/>
+        <h1 className="text-2xl text-primary font-bold ">µFacture</h1>
       </NavLink>
       <NavLink to="/" className={buttonStyle}>
         {({ isActive }) => (

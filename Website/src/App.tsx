@@ -20,6 +20,7 @@ import Company from "./routes/company";
 import Profile from "./routes/profile";
 import ConfigContextProvider from "./context/configContext";
 import Analytics from "./analytics";
+import NotFound from './routes/not-found';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
               <Route path="login" element={<LoginPage />} />
               <Route path="signup" element={<SignUpPage />} />
               <Route path="forgot" element={<SignUpPage />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Analytics>
         </BrowserRouter>

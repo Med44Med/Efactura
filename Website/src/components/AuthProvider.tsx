@@ -3,7 +3,7 @@ import { supabase } from "../api/supabase";
 import useAuth from "../Zustand/auth";
 import { fetchProfile } from '../api/auth';
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }:{children:React.Node}) => {
   const { user, login, logout } = useAuth();
   
   useEffect(() => {

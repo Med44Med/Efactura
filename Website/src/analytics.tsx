@@ -2,10 +2,13 @@ import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "./api/supabase";
 
-const Analytics = ({ children }) => {
-  const { pathname } = useLocation();
-  const [visitedLink, setVisitedLink] = useState([]);
-  const [sessionId, setSessionId] = useState(null);
+const Analytics = ({ children }:{children:React.ReactNode}) => {
+  const { pathname }:{pathname:string} = useLocation();
+  const [visitedLink, setVisitedLink] = useState<string[]>([]);
+  // const [sessionId, setSessionId] = useState(null);
+
+  console.log(visitedLink);
+  
 
   useEffect(() => {
     setVisitedLink((perv) => [...perv, pathname]);
