@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SideBar from '../components/layout/sideBar';
 import useAuth from '../Zustand/auth';
 

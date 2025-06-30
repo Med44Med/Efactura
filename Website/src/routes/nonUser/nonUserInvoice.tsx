@@ -4,8 +4,10 @@ import Table from '../../components/nonUserInvoice/table';
 
 const NonUserInvoice = () => {
 
+  
+  
+
   const today = new Date()
-  console.log(today);
   
   const [invoice, setInvoice] = useState({
     id: "",
@@ -78,7 +80,7 @@ const NonUserInvoice = () => {
             </div>
             <div className='w-full flex '>
               <h1 className="flex-1 text-end text-text font-light">Date:</h1>
-              <h1 className="flex-1 text-end text-text font-light">{`${today.getDate()}.${today.getMonth()}.${today.getFullYear()}`}</h1>
+              <h1 className="flex-1 text-end text-text font-light">{`${today.getDate()}.${today.getMonth()+1}.${today.getFullYear()}`}</h1>
             </div>
           </div>
         </div>
