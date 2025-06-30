@@ -5,8 +5,6 @@ import { useState, useEffect } from "react";
 const ConfigContextProvider = ({ children }) => {
   const html = document.getElementsByTagName("html")[0];
 
-  console.log(html);
-
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
   const toggleTheme = () => {
     setTheme((perv) => {
@@ -24,8 +22,10 @@ const ConfigContextProvider = ({ children }) => {
     }
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       localStorage.setItem("theme", "dark");
+      setTheme('dark')
     } else {
       localStorage.setItem("theme", "light");
+      setTheme('light')
     }
   }, []);
 
@@ -38,7 +38,7 @@ const ConfigContextProvider = ({ children }) => {
     }
   }, [theme]);
 
-  return <ConfigContext value={{ toggleTheme }}>{children}</ConfigContext>;
+  return <ConfigContext value={{ theme,toggleTheme }}>{children}</ConfigContext>;
 };
 
 export default ConfigContextProvider;
