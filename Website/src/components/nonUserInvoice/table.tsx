@@ -16,6 +16,11 @@ const Table = ({ data }) => {
   const [existIndex, setExistIndex] = useState(null);
   const [addQty, setAddQty] = useState(0);
 
+  const [newItem, setNewItem] = useState({
+    name: "",
+    unitPrice: 0
+  })
+
   const showItems = () => {
     return items.map((item, index) => (
       <tr key={index}>
@@ -77,6 +82,10 @@ const Table = ({ data }) => {
     setTypeOfItem(null);
     setAddQty(0);
   };
+
+  const handleAddNewItem = ()=>{
+    
+  }
   const addItems = () => {
     if (addingItems) {
       if (typeOfItem === null) {
@@ -144,7 +153,25 @@ const Table = ({ data }) => {
       } else {
         return (
           <tr>
-            <td>new</td>
+            <td><input type="text" value={newItem.name} onChange={e=>setNewItem(perv=>({...perv,name:e.target.value}))}/></td>
+            <td><input type="number" value={newItem.unitPrice} onChange={e=>setNewItem(perv=>({...perv,unitPrice:e.target.value}))}/></td>
+            <td className="text-text-secondary text-center py-5">
+              <input
+                type="number"
+                min={0}
+                value={addQty}
+                onChange={(e) => setAddQty(e.target.value)}
+                className="py-1 outline-none w-10 bg-blue-100 text-center "
+              />
+            </td>
+            <td className="text-text-secondary text-center py-5">
+              <div
+                onClick={() => handleAddNewItem()}
+                className="bg-primary text-primary-contrast py-3 uppercase rounded cursor-pointer"
+              >
+                add
+              </div>
+            </td>
           </tr>
         );
       }
