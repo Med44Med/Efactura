@@ -1,5 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router";
+
+import './i18n/config.ts'
+
 import Dashboard from "./routes/dashboard";
 import Layout from "./routes/layout";
 import Invoices from "./routes/invoices/invoices";
@@ -20,8 +23,9 @@ import NotFound from "./routes/not-found";
 import useAuth from "./Zustand/auth";
 import Products from "./routes/products/products";
 import NewProducts from "./routes/products/newProducts";
-import NonUserDashboard from './routes/nonUser/nonUserDashboard';
-import NonUserInvoice from './routes/nonUser/nonUserInvoice';
+import NonUserDashboard from "./routes/nonUser/nonUserDashboard";
+import NonUserInvoice from "./routes/nonUser/nonUserInvoice";
+import Example from "./example";
 
 function App() {
   const { user } = useAuth();
@@ -67,6 +71,7 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignUpPage />} />
           <Route path="forgot" element={<SignUpPage />} />
+          <Route path="/example" element={<Example />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Analytics>

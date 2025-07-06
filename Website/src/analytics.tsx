@@ -26,6 +26,8 @@ const Analytics = ({ children }:{children:React.ReactNode}) => {
    
   // }, 5000);
 
+
+  // NAVIGATOR :)
   
 
   useEffect(() => {

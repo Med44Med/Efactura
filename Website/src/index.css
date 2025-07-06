@@ -6,8 +6,9 @@
   --color-text: #252422;
   --color-text-secondary: #999999;
   --color-primary: #00509d;
-  --color-primary-hover: #00296b;
+  --color-primary-hover: #1a76bc;
   --color-primary-contrast: #ffffff;
+  --color-primary-secondary: #999999;
   --color-accent: #eb5e28;
   --color-accent-hover: #ff6700;
 }

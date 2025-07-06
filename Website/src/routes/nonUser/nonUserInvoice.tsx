@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Table from "../../components/nonUserInvoice/table";
 import Sender from "../../components/nonUserInvoice/sender";
+import Clients from '../../components/nonUserInvoice/clients';
 
 const NonUserInvoice = () => {
   const today = new Date();
@@ -36,7 +37,9 @@ const NonUserInvoice = () => {
   });
 
   const onSubmitSenderInfo=()=>{
-    console.log(senderInfo);
+    const cleanObject = Object.fromEntries(Object.entries(senderInfo).filter(([_, value]) => value));
+    setSenderInfo(cleanObject)
+    localStorage.setItem('sender',JSON.stringify(cleanObject))
     
   }
 
@@ -67,44 +70,7 @@ const NonUserInvoice = () => {
           </div>
         </div>
 
-        <div className="w-full flex flex-col mb-10">
-          <h1 className="text-text text-2xl uppercase">Issued to</h1>
-          <input
-            type="text"
-            placeholder="[Company Name]"
-            className="outline-none bg-transparent text-text text-xl placeholder:text-text-secondary"
-          />
-          <input
-            type="text"
-            placeholder="[Address]"
-            className="outline-none bg-transparent text-text text-sm placeholder:text-text-secondary"
-          />
-          <input
-            type="text"
-            placeholder="[Zip]"
-            className="outline-none text-text text-sm placeholder:text-text-secondary"
-          />
-          <input
-            type="text"
-            placeholder="[Tel]"
-            className="outline-none text-text text-sm placeholder:text-text-secondary"
-          />
-          <input
-            type="text"
-            placeholder="[Fax]"
-            className="outline-none text-text text-sm placeholder:text-text-secondary"
-          />
-          <input
-            type="text"
-            placeholder="[No of registre]"
-            className="outline-none text-text text-sm placeholder:text-text-secondary"
-          />
-          <input
-            type="text"
-            placeholder="[NIF]"
-            className="outline-none text-text text-sm placeholder:text-text-secondary"
-          />
-        </div>
+        <Clients />
         <Table />
       </div>
     </main>

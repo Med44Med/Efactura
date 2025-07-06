@@ -4,10 +4,20 @@ import { useState, useEffect } from "react";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 
+const senderOptions = [
+  { name: "Address", value: "Address" },
+  { name: "Zip", value: "Zip" },
+  { name: "Tel", value: "Tel" },
+  { name: "Fax", value: "Fax" },
+  { name: "No of Register of Commerce", value: "R/C" },
+  { name: "No of Fiscal", value: "NIF" },
+  { name: "Bank Account", value: "RIP" },
+];
+
 const Sender = ({ senderInfo, setSenderInfo, onSubmitSenderInfo }) => {
   const [editing, setEditing] = useState(false);
   const [addingKey, setAddingKey] = useState(false);
-  const [newKey, setNewKey] = useState({ key: "", value: "" });
+  const [newKey, setNewKey] = useState({ key: "R/C", value: "" });
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("savedInfo"))?.sender;
@@ -31,7 +41,14 @@ const Sender = ({ senderInfo, setSenderInfo, onSubmitSenderInfo }) => {
     setAddingKey(false);
   };
 
+  const handleSubmit = () => {
+    onSubmitSenderInfo();
+    setEditing(false);
+    setAddingKey(false);
+    setNewKey({ key: "R/C", value: "" });
+  };
 
+  
   return (
     <div className="relative group flex-1 flex flex-col cursor-pointer rounded-xl p-3 ">
       {editing ? (
@@ -69,20 +86,14 @@ const Sender = ({ senderInfo, setSenderInfo, onSubmitSenderInfo }) => {
           {addingKey ? (
             <div className="w-full flex justify-start items-center gap-1 bg-primary rounded-xl mt-3 overflow-hidden">
               <select
+                value={newKey.key}
                 onChange={(e) =>
                   setNewKey((perv) => ({ ...perv, key: e.target.value }))
                 }
                 className="text-primary-contrast py-1"
               >
-                <option className="text-black" value="R/C">
-                  No of Register of Commerce
-                </option>
-                <option className="text-black" value="NIF" selected>
-                  No of Fiscal
-                </option>
-                <option className="text-black" value="Bank">
-                  Bank Account
-                </option>
+                {senderOptions.filter(opt=>!Object.keys(senderInfo).includes(opt.value)).map(opt=><option key={opt.value} className="text-black" value={opt.value}>{opt.name}</option>)}
+                
               </select>
               <input
                 type="text"
@@ -103,7 +114,10 @@ const Sender = ({ senderInfo, setSenderInfo, onSubmitSenderInfo }) => {
               <IoMdAdd className="text-primary text-base" />
             </div>
           )}
-          <div onClick={()=>onSubmitSenderInfo()} className="mt-3 bg-primary hover:bg-primary-hover px-5 py-2 w-56 rounded text-center text-primary-contrast">
+          <div
+            onClick={() => handleSubmit()}
+            className="mt-3 bg-primary hover:bg-primary-hover px-5 py-2 w-56 rounded text-center text-primary-contrast"
+          >
             Submit
           </div>
         </>
@@ -118,7 +132,7 @@ const Sender = ({ senderInfo, setSenderInfo, onSubmitSenderInfo }) => {
                   } capitalize`}
                   key={key}
                 >
-                  {senderInfo.name}
+                  {senderInfo[key]}
                 </h1>
               );
             } else {
