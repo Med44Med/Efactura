@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router";
 
-import './i18n/config.ts'
+import "./i18n/config.ts";
 
 import Dashboard from "./routes/dashboard";
 import Layout from "./routes/layout";
@@ -23,58 +23,65 @@ import NotFound from "./routes/not-found";
 import useAuth from "./Zustand/auth";
 import Products from "./routes/products/products";
 import NewProducts from "./routes/products/newProducts";
-import NonUserDashboard from "./routes/nonUser/nonUserDashboard";
 import NonUserInvoice from "./routes/nonUser/nonUserInvoice";
 import Example from "./example";
+import AppConfig from "./appConfig";
+import NonUserLayout from './routes/nonUser/nonUserLayout';
 
 function App() {
   const { user } = useAuth();
 
   return (
     <BrowserRouter>
-      <Analytics>
-        <Routes>
-          {!user ? (
-            <>
-              <Route index element={<NonUserDashboard />} />
-              <Route path="/invoice" element={<NonUserInvoice />} />
-            </>
-          ) : (
-            <Route element={<Layout />}>
-              <Route index element={<Dashboard />} />
+      <AppConfig>
+        <Analytics>
+          <Routes>
+            {!user ? (
+              <>
+                <Route element={<NonUserLayout />}>
+                  <Route index element={<NonUserInvoice />} />
+                </Route>
 
-              <Route path="/invoices" element={<Invoices />} />
-              <Route path="/invoices/new" element={<NewInvoice />} />
-              <Route
-                path="/invoices/templates"
-                element={<InvoicesTemplates />}
-              />
+                <Route path="login" element={<LoginPage />} />
+                <Route path="signup" element={<SignUpPage />} />
+                <Route path="forgot" element={<SignUpPage />} />
+              </>
+            ) : (
+              <>
+                <Route element={<Layout />}>
+                  <Route index element={<Dashboard />} />
 
-              <Route path="/estimates" element={<Estimates />} />
-              <Route path="/estimates/new" element={<NewEstimate />} />
-              <Route
-                path="/estimates/templates"
-                element={<EstimatesTepmlates />}
-              />
+                  <Route path="/invoices" element={<Invoices />} />
+                  <Route path="/invoices/new" element={<NewInvoice />} />
+                  <Route
+                    path="/invoices/templates"
+                    element={<InvoicesTemplates />}
+                  />
 
-              <Route path="/products" element={<Products />} />
-              <Route path="/new-items" element={<NewProducts />} />
+                  <Route path="/estimates" element={<Estimates />} />
+                  <Route path="/estimates/new" element={<NewEstimate />} />
+                  <Route
+                    path="/estimates/templates"
+                    element={<EstimatesTepmlates />}
+                  />
 
-              <Route path="/clients" element={<Clients />} />
-              <Route path="/new-client" element={<NewClient />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/new-items" element={<NewProducts />} />
 
-              <Route path="/company" element={<Company />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/settings" element={<Settings />} />
-            </Route>
-          )}
-          <Route path="login" element={<LoginPage />} />
-          <Route path="signup" element={<SignUpPage />} />
-          <Route path="forgot" element={<SignUpPage />} />
-          <Route path="/example" element={<Example />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Analytics>
+                  <Route path="/clients" element={<Clients />} />
+                  <Route path="/new-client" element={<NewClient />} />
+
+                  <Route path="/company" element={<Company />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Route>
+              </>
+            )}
+            <Route path="/example" element={<Example />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Analytics>
+      </AppConfig>
     </BrowserRouter>
   );
 }

@@ -3,14 +3,16 @@
 @theme {
   --color-background: #f9f7f3;
   --color-surface: #ffffff;
+  --color-hover: rgba(100,100,100,.2);
   --color-text: #252422;
   --color-text-secondary: #999999;
-  --color-primary: #00509d;
-  --color-primary-hover: #1a76bc;
+  --color-primary: #1a76bc;
+  --color-primary-hover: #00509d;
   --color-primary-contrast: #ffffff;
   --color-primary-secondary: #999999;
   --color-accent: #eb5e28;
   --color-accent-hover: #ff6700;
+  --font-playfair :"Playfair", serif;
 }
 
 html[theme=dark] {

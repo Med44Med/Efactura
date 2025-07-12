@@ -8,9 +8,11 @@
 
 
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
   transition: all .3s ease;
 }
+
+
 
 body {
   min-height: 100vh;

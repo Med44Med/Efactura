@@ -1,57 +1,60 @@
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "./api/supabase";
-import { UAParser } from 'ua-parser-js';
+import { UAParser } from "ua-parser-js";
+import { v5 as uuidv5, v4 as uuidv4 } from "uuid";
 
-const Analytics = ({ children }:{children:React.ReactNode}) => {
-  const OS = UAParser().os.toString()
-
-  const { pathname }:{pathname:string} = useLocation();
-  const [visitedLink, setVisitedLink] = useState<string[]>([]);
-  
-  // const [sessionId, setSessionId] = useState(null);
-
-  // console.log({
-  //   os:OS,
-  //   deviceWidth:window.innerWidth
-  // });
-
-
-  // const first = Date.now()
-
-  // setTimeout(() => {
-  //  const second=Date.now()
-  //  const interval = second-first
-  //  console.log(interval);
-   
-  // }, 5000);
-
-
-  // NAVIGATOR :)
-  
+const Analytics = ({ children }: { children: React.ReactNode }) => {
+  const { pathname }: { pathname: string } = useLocation();
+  const [pathVisited, setPathVisited] = useState([]);
 
   useEffect(() => {
-    setVisitedLink((perv) => [...perv, pathname]);
+    setPathVisited((perv) => [...perv, pathname]);
   }, [pathname]);
+  console.log(pathVisited);
+
+  const generateAnalytics = async () => {
+    const {
+      os: { name: os },
+      browser: { name: browser },
+    } = UAParser();
+    const {
+      devicePixelRatio: ratio,
+      innerWidth: width,
+      innerHeight: height,
+    } = window;
+    const device = { os, browser, ratio, width, height };
+    const { data, error } = await supabase
+      .from("analytics")
+      .insert({ device })
+      .select();
+    if (error) {
+      console.log(error);
+      return;
+    }
+    localStorage.setItem("session_id", data[0].id);
+    localStorage.setItem("elapsed_time", Date.now());
+  };
+
+  const closeAnalytics = async () => {
+    const id = localStorage.getItem("session_id");
+    const start = Math.floor(localStorage.getItem("elapsed_time"));
+    const { error } = await supabase
+      .from("analytics")
+      .update({
+        elapsed_time: Math.floor((Date.now() - start) / 1000),
+        links: pathVisited,
+      })
+      .eq("id", id);
+    if (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const createSession = async () => {
-      const { error } = await supabase.from("analytics").insert({ device: "windows" });
-      if (error) {
-        console.log(error);
-      }
-    };
-    // const updateSession = async () => {
-    //   const { data, error } = await supabase
-    //     .from("analytics")
-    //     .update({ links: visitedLink })
-    //     .eq("id", sessionId);
-    //     console.log({ data, error });
-        
-    // };
-    createSession();
+    generateAnalytics();
     return () => {
-    //   updateSession();
+      closeAnalytics();
     };
   }, []);
 
