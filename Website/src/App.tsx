@@ -27,6 +27,8 @@ import NonUserInvoice from "./routes/nonUser/nonUserInvoice";
 import Example from "./example";
 import AppConfig from "./appConfig";
 import NonUserLayout from './routes/nonUser/nonUserLayout';
+import NonUserClients from './routes/nonUser/nonUserClients';
+import NonUserClientDetails from './routes/nonUser/nonUserClientDetails';
 
 function App() {
   const { user } = useAuth();
@@ -40,6 +42,8 @@ function App() {
               <>
                 <Route element={<NonUserLayout />}>
                   <Route index element={<NonUserInvoice />} />
+                  <Route path='/clients' element={<NonUserClients/>} />
+                  <Route path='/clients/:name' element={<NonUserClientDetails/>} />
                 </Route>
 
                 <Route path="login" element={<LoginPage />} />

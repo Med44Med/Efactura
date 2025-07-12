@@ -55,7 +55,7 @@ const NonUserSideBar = ({ hide, setHide }) => {
             )}
           </NavLink>
           <NavLink
-            to="/client"
+            to="/clients"
             className="w-full rounded p-2 mb-3 flex justify-start items-center gap-2 hover:bg-hover [&.active]:bg-primary [&.active]:hover:bg-primary-hover"
           >
             {({ isActive }) => (
@@ -70,7 +70,7 @@ const NonUserSideBar = ({ hide, setHide }) => {
                     isActive ? "text-primary-contrast" : "text-text"
                   }`}
                 >
-                  client
+                  clients
                 </p>
               </>
             )}
